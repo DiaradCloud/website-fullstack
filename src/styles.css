@@ -1,0 +1,223 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Diarad Cloud design system.
+ * Dark-first, Vercel-like minimal surface, RTL Persian typography.
+ * All colors are oklch semantic tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --font-sans: "Vazirmatn", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Inter", ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-violet: var(--violet);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-faint: var(--faint);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  --background: oklch(0 0 0);
+  --foreground: oklch(0.93 0 0);
+  --card: oklch(0.165 0 0);
+  --card-foreground: oklch(0.93 0 0);
+  --popover: oklch(0.19 0 0);
+  --popover-foreground: oklch(0.93 0 0);
+
+  --primary: oklch(0.56 0.219 258);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.22 0 0);
+  --secondary-foreground: oklch(0.93 0 0);
+  --muted: oklch(0.19 0 0);
+  --muted-foreground: oklch(0.63 0 0);
+  --accent: oklch(0.24 0 0);
+  --accent-foreground: oklch(0.93 0 0);
+
+  --destructive: oklch(0.63 0.222 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --success: oklch(0.72 0.19 148);
+  --success-foreground: oklch(0.14 0 0);
+  --warning: oklch(0.76 0.16 70);
+  --warning-foreground: oklch(0.14 0 0);
+  --violet: oklch(0.6 0.22 295);
+
+  --faint: oklch(0.45 0 0);
+  --border: oklch(1 0 0 / 8%);
+  --border-strong: oklch(1 0 0 / 18%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.56 0.219 258);
+
+  --sidebar: oklch(0 0 0);
+  --sidebar-foreground: oklch(0.93 0 0);
+  --sidebar-primary: oklch(0.56 0.219 258);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.19 0 0);
+  --sidebar-accent-foreground: oklch(0.93 0 0);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.56 0.219 258);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border-strong);
+    border-radius: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility ltr-mono {
+  font-family: var(--font-mono);
+  direction: ltr;
+  text-align: left;
+}
+
+@utility shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1100px;
+  padding-inline: 1.5rem;
+}
+
+@utility surface {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-card);
+  padding: 1.25rem;
+  transition: border-color 0.15s ease;
+}
+
+@utility badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  color: var(--color-muted-foreground);
+  background-color: var(--color-card);
+}
+
+@utility field {
+  width: 100%;
+  border: 1px solid var(--color-input);
+  border-radius: var(--radius-md);
+  background-color: var(--color-background);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--color-foreground);
+  outline: none;
+  transition: border-color 0.15s ease;
+
+  &::placeholder {
+    color: var(--color-faint);
+  }
+
+  &:focus {
+    border-color: var(--color-ring);
+  }
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    100deg,
+    oklch(0.72 0.16 258),
+    oklch(0.72 0.16 300)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+@utility surface-hover {
+  &:hover {
+    border-color: var(--color-border-strong);
+  }
+}
+
+@utility glow-primary {
+  box-shadow: 0 0 0 1px oklch(0.56 0.219 258 / 25%), 0 18px 60px -24px oklch(0.56 0.219 258 / 55%);
+}
+
+@utility terminal-surface {
+  background: oklch(0.16 0.015 260);
+  color: oklch(0.88 0.015 250);
+  font-family: var(--font-mono);
+  direction: ltr;
+  text-align: left;
+}
